@@ -8,9 +8,6 @@ import allure
 import time
 import csv
 
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.wait import WebDriverWait
-
 
 @allure.severity("Blocker")
 def test_xyz_bank_new_version(setup_method):
@@ -69,7 +66,6 @@ def test_xyz_bank_new_version(setup_method):
     driver.click_the_button("//button[@ng-click='transactions()']")
     #
     transactions = driver.check_info_of_elements("//table/tbody/tr")
-    LOGGER.warning(f"{transactions}")
     assert len(transactions) == count_transactions
     LOGGER.info("7/8] Checking the number of taranactions")
 
@@ -83,8 +79,6 @@ def test_xyz_bank_new_version(setup_method):
         for transaction in transactions:
 
             transaction_info = transaction.find_elements(By.XPATH, ".//td")
-            # transaction_info = transaction.check_info_of_elements(".//td")
-            # transaction_info = transaction.text
             #
             date_time_str, amount, transaction_type = transaction_info
             date_time = datetime.datetime.strptime(date_time_str.text, "%b %d, %Y %H:%M:%S %p")
@@ -173,7 +167,6 @@ def test_xyz_bank_old_version(setup_method):
     time.sleep(1)
     #
     transactions = driver.find_elements(By.XPATH, "//table/tbody/tr")
-    LOGGER.warning(f"{transactions}")
     assert len(transactions) == count_transactions
     LOGGER.info("7/8]" + f"\033[38;5;{231}m {'Checking the number of taranactions'}\033[0;0m")
 
@@ -193,16 +186,3 @@ def test_xyz_bank_old_version(setup_method):
     with allure.step("Скриншот таблицы, двух проведённых транзакций"):
         allure.attach(driver.get_screenshot_as_png(), name="main_page", attachment_type=AttachmentType.PNG)
     LOGGER.info("8/8]" + f"\033[38;5;{231}m {'Generating a report file'}\033[0;0m")
-
-
-# Постоянное использование неявных ожиданий (выставить условие-таймер - если элемент
-# прогружен на странице - найти и нажать, то есть использовать функцию implicitly_wait)
-# [примерно 28.74s с неявными ожиданиями]
-
-# [✓] Не используется pytest (сейчас похоже на unittest-like), его механизмов перед и пост-условий
-
-# [✓] Принты в коде (если есть необходимость, то лучше прикручивать logging)
-
-# [✓] Не используется selenium grid
-
-# [✓] Не используется Page Object

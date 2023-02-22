@@ -1,0 +1,6 @@
+selenium
+pytest
+pytest-xdist
+allure
+allure-pytest
+allure-python-commons

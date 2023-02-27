@@ -11,7 +11,7 @@ def setup_method():
 
     # driver = webdriver.Chrome(options=options)
     driver = webdriver.Remote(
-        command_executor='http://localhost:4444/wd/hub',
+        command_executor='http://localhost:4444/wd/hub',  # localhost
         options=options
     )
 

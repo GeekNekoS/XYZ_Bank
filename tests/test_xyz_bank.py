@@ -16,6 +16,9 @@ def test_xyz_bank_new_version(setup_method):
     # №2
     driver = SearchTools(setup_method)
     driver.go_to_site()
+    time.sleep(1)
+    with allure.step("Скриншот открываемой страницы XYZ_Bank"):
+        allure.attach(driver.get_screenshot_as_png(), name="main_page", attachment_type=AttachmentType.PNG)
     LOGGER.info("1/8] Openning the page")
 
     # №3
@@ -70,7 +73,7 @@ def test_xyz_bank_new_version(setup_method):
     LOGGER.info("7/8] Checking the number of taranactions")
 
     # №9
-    with open(f'transactions_check.csv', 'w', encoding="utf-8", newline='') as file:
+    with open(f'transactions_test_1.csv', 'w', encoding="utf-8", newline='') as file:
         writer = csv.writer(file, delimiter=',')
 
         headers = ["Date-Time", " Amount", "Transaction Type"]
@@ -84,6 +87,8 @@ def test_xyz_bank_new_version(setup_method):
             date_time = datetime.datetime.strptime(date_time_str.text, "%b %d, %Y %H:%M:%S %p")
             info = [date_time.strftime('%d %B %Y %H:%M:%S'), amount.text, transaction_type.text]
             writer.writerow(info)
+    with allure.step("Скриншот страницы проведённых транзакций"):
+        allure.attach(driver.get_screenshot_as_png(), name="main_page", attachment_type=AttachmentType.PNG)
     LOGGER.info("8/8]" + f"\033[38;5;{231}m {'Generating a report file'}\033[0;0m")
 
 
@@ -150,7 +155,7 @@ def test_xyz_bank_old_version(setup_method):
     #
     send_withdrawal = driver.find_element(By.XPATH, "//button[text()='Withdraw']")
     send_withdrawal.click()
-    time.sleep(1)
+    time.sleep(2)
     #
     count_transactions += 1
     LOGGER.info("5/8]" + f"\033[38;5;{231}m {'Debiting from the account'}\033[0;0m")
@@ -171,7 +176,7 @@ def test_xyz_bank_old_version(setup_method):
     LOGGER.info("7/8]" + f"\033[38;5;{231}m {'Checking the number of taranactions'}\033[0;0m")
 
     # №9
-    with open(f'transactions.csv', 'w', encoding="utf-8", newline='') as file:
+    with open(f'transactions_test_2.csv', 'w', encoding="utf-8", newline='') as file:
         writer = csv.writer(file, delimiter=',')
 
         headers = ["Date-Time", " Amount", "Transaction Type"]

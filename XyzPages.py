@@ -21,3 +21,7 @@ class SearchTools(BasePage):
     def check_info_of_elements(self, xpath):
         info = self.find_elements((By.XPATH, xpath))
         return info
+
+    def get_screenshot_as_png(self):
+        photo = self.driver.get_screenshot_as_png()
+        return photo

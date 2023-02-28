@@ -26,5 +26,5 @@
 
 
 
-В данном проекте используются следующие технологии: Selenium WebDriver, многопоточность (pytest-xdist), 
-Selenium Grid, логирование (logging), генерация отчётов (allure-pytest).
+В данном проекте используются следующие технологии: тестирование (pytest), Selenium WebDriver, 
+многопоточность (pytest-xdist), Selenium Grid, логирование (logging), генерация отчётов (allure-pytest).

@@ -65,7 +65,7 @@ def test_xyz_bank_new_version(setup_method):
     assert balance_info.text == "0"
     LOGGER.info("6/8] Сhecking the account balance")
 
-    # №8 <== где-то здесь ошибка
+    #
     driver.click_the_button("//button[@ng-click='transactions()']")
     #
     transactions = driver.check_info_of_elements("//table/tbody/tr")

@@ -89,7 +89,7 @@ def test_xyz_bank_new_version(setup_method):
             writer.writerow(info)
     with allure.step("Скриншот страницы проведённых транзакций"):
         allure.attach(driver.get_screenshot_as_png(), name="main_page", attachment_type=AttachmentType.PNG)
-    LOGGER.info("8/8]" + f"\033[38;5;{231}m {'Generating a report file'}\033[0;0m")
+    LOGGER.info("8/8] Generating a report file")
 
 
 @allure.severity("Blocker")
@@ -102,7 +102,7 @@ def test_xyz_bank_old_version(setup_method):
     with allure.step("Скриншот открываемой страницы XYZ_Bank"):
         allure.attach(driver.get_screenshot_as_png(), name="main_page", attachment_type=AttachmentType.PNG)
     assert driver.title == "XYZ Bank"
-    LOGGER.info("1/8]" + f"\033[38;5;{231}m {'Openning the page'}\033[0;0m")
+    LOGGER.info("1/8] Openning the page")
 
     # №3
     customer_login_button = driver.find_element(By.XPATH, "//button[text()='Customer Login']")
@@ -112,7 +112,7 @@ def test_xyz_bank_old_version(setup_method):
     username_button_xpath = "//select[@name='userSelect']/option[text()='Harry Potter']"
     username_button = driver.find_element(By.XPATH, username_button_xpath)
     assert username_button.text == "Harry Potter"
-    LOGGER.info("2/8]" + f"\033[38;5;{231}m {'User selection attempt'}\033[0;0m")
+    LOGGER.info("2/8] User selection attempt")
     username_button.click()
     time.sleep(1)
     #
@@ -124,7 +124,7 @@ def test_xyz_bank_old_version(setup_method):
     n = date.today().day
     fib = lambda x: 1 if x < 3 else fib(x - 2) + fib(x - 1)
     money = fib(n)
-    LOGGER.info("3/8]" + f"\033[38;5;{231}m {'The N fibonacci number calculation'}\033[0;0m")
+    LOGGER.info("3/8] The N fibonacci number calculation")
 
     count_transactions = 0
 
@@ -142,7 +142,7 @@ def test_xyz_bank_old_version(setup_method):
     time.sleep(1)
     #
     count_transactions += 1
-    LOGGER.info("4/8]" + f"\033[38;5;{231}m {'Adding funds to account'}\033[0;0m")
+    LOGGER.info("4/8] Adding funds to account")
 
     # №6 withdrawal
     withdrawal_button = driver.find_element(By.XPATH, "//button[@ng-click='withdrawl()']")
@@ -158,12 +158,12 @@ def test_xyz_bank_old_version(setup_method):
     time.sleep(2)
     #
     count_transactions += 1
-    LOGGER.info("5/8]" + f"\033[38;5;{231}m {'Debiting from the account'}\033[0;0m")
+    LOGGER.info("5/8] Debiting from the account")
 
     # №7
     balance_info = driver.find_element(By.XPATH, "//div[@ng-hide='noAccount']/strong[2]")
     assert balance_info.text == "0"
-    LOGGER.info("6/8]" + f"\033[38;5;{231}m {'Сhecking the account balance'}\033[0;0m")
+    LOGGER.info("6/8] Сhecking the account balance")
     time.sleep(1)
 
     # №8
@@ -173,7 +173,7 @@ def test_xyz_bank_old_version(setup_method):
     #
     transactions = driver.find_elements(By.XPATH, "//table/tbody/tr")
     assert len(transactions) == count_transactions
-    LOGGER.info("7/8]" + f"\033[38;5;{231}m {'Checking the number of taranactions'}\033[0;0m")
+    LOGGER.info("7/8] Checking the number of taranactions")
 
     # №9
     with open(f'transactions_test_2.csv', 'w', encoding="utf-8", newline='') as file:
@@ -190,4 +190,4 @@ def test_xyz_bank_old_version(setup_method):
             writer.writerow(info)
     with allure.step("Скриншот таблицы, двух проведённых транзакций"):
         allure.attach(driver.get_screenshot_as_png(), name="main_page", attachment_type=AttachmentType.PNG)
-    LOGGER.info("8/8]" + f"\033[38;5;{231}m {'Generating a report file'}\033[0;0m")
+    LOGGER.info("8/8] Generating a report file")

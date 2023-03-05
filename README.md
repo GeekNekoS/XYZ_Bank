@@ -23,7 +23,5 @@
 
 6) Для просмотра отчёта через allure прописать в терминале: allure serve report
 
-
-
-В данном проекте используются следующие технологии: тестирование (pytest), Selenium WebDriver, 
-многопоточность (pytest-xdist), Selenium Grid, логирование (logging), генерация отчётов (allure-pytest).
+В данном проекте используются следующие технологии: тестирование (pytest), Selenium WebDriver, многопоточность 
+(pytest-xdist), Selenium Grid, логирование (logging), генерация отчётов (allure-pytest), явные ожидания (WebDriverWait).
